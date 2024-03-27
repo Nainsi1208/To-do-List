@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0
+			padding: 0;
+		}
+		Body{
+			background: linear-gradient(to right,skyblue 40%,lightgreen);
+		}
+		h1{
+			font-family: unset;
+			font-size: 40px;
+			color: greenyellow;
+			padding: 0.5rem 20rem;
+		}
+		
+		.task_container{
+			display: flex;
+			margin-top: 1rem;
+			border-radius: rem;
+
+		}
+		input{
+			padding:0.8rem;
+			padding-right: 18rem;
+			border-radius: 1rem;
+			font-size: 20px;
+			margin-left: 20rem;
+			background: lightblue;
+         outline: none;
+         border: none;
+         
+
+
+		}
+		button{
+			padding: 0.5rem 0.5rem;
+			background: transparent;
+			font-size: 20px;
+			border: none;
+			outline: none;
+			color: rgb(25, 145
+
+				, 417, 1.0);
+
+		}
+		
+
+	</style>
+</head>
+<body>
+	<h1>To Do list</h1>
+    <input type="text" id="inp" placeholder="Enter Tour Task">
+    <button onclick="task()">Add Task</button>
+    <h1>Tasks</h1>
+	<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    	let inp = document.getElementById('inp');
+    	let body = document.querySelector('body');
+    	const task = () => {
+         let val = inp.value;
+         if (val != "") {
+         	let box = document.createElement('div');
+         	box.classList.add('task_container');
+         	body.appendChild(box);
+         	let task_inp = document.createElement('input');
+         	task_inp.setAttribute('readonly','readonly');
+         	box.appendChild(task_inp);
+         	task_inp.value = val;
+         	let btn_box = document.createElement('div');
+         	btn_box.classList.add('buttons');
+         	box.appendChild(btn_box);
+         	let Edit  = document.createElement('button');
+         	Edit.innerText = "Edit";
+         	Edit.addEventListener('click',() => {
+        	if (Edit.innerText == "Edit" ){
+        	Edit.innerText = "Save";
+            task_inp.removeAttribute('readonly');
+        	}else{
+        		Edit.innerText = "Edit";
+         	task_inp.setAttribute('readonly','readonly');
+
+        	}        	
+         	})         	
+            btn_box.appendChild(Edit);
+            let del = document.createElement('button');
+            del.innerText = "Delete";
+            del.addEventListener('click',() => {
+            box.remove();	
+            })
+            btn_box.appendChild(del);
+            inp.value = "";
+         }else{
+         	swal('error');
+         }
+    	}
+
+    	
+    </script>
+</body>
+</html>
